@@ -1,1 +1,2 @@
 C:\Users\ljw\Desktop\PlaneGame_cpp\PlaneWar_cpp\x64\Debug\PlaneWar_cpp.exe
+C:\Users\ljw\Desktop\PlaneGame_cpp\Planegame_CPP\x64\Debug\PlaneWar_cpp.exe
