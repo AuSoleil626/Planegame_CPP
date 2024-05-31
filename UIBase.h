@@ -3,8 +3,8 @@
 class UIBase
 {
 public:
-    explicit UIBase();
-    virtual ~UIBase()=0;
+    UIBase();
+    virtual ~UIBase();
 public:
     virtual void render() =0; 
     virtual void update() =0;

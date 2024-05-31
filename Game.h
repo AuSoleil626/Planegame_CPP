@@ -3,6 +3,8 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
+#include <SFML/Graphics/RenderWindow.hpp>
+
 enum GameState
 {
     gameBegin,
@@ -26,8 +28,16 @@ private:
 
     //Gamestate
     GameState game_state_;
+
+    //Base Window
+    std::shared_ptr<sf::RenderWindow> window_;
+
+
     
 public:
     void GameStart();
     void SetCurrentUI(std::shared_ptr<UIBase> ui);
+    void UpdateGameState();
+    void GameRender();
+    void HandleEvents();
 };

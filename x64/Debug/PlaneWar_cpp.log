@@ -1,2 +1,8 @@
-﻿  main.cpp
-  PlaneWar_cpp.vcxproj -> C:\Users\ljw\Desktop\PlaneGame_cpp\PlaneWar_cpp\x64\Debug\PlaneWar_cpp.exe
+﻿  Game.cpp
+  main.cpp
+  MainMenu.cpp
+  UIBase.cpp
+  正在生成代码...
+MainMenu.obj : error LNK2019: 无法解析的外部符号 "public: __cdecl UIBase::UIBase(void)" (??0UIBase@@QEAA@XZ)，函数 "public: __cdecl MainMenu::MainMenu(void)" (??0MainMenu@@QEAA@XZ) 中引用了该符号
+MainMenu.obj : error LNK2019: 无法解析的外部符号 "public: virtual __cdecl UIBase::~UIBase(void)" (??1UIBase@@UEAA@XZ)，函数 "public: virtual __cdecl MainMenu::~MainMenu(void)" (??1MainMenu@@UEAA@XZ) 中引用了该符号
+C:\Users\ljw\Desktop\PlaneGame_cpp\Planegame_CPP\x64\Debug\PlaneWar_cpp.exe : fatal error LNK1120: 2 个无法解析的外部命令
