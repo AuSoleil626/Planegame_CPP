@@ -7,7 +7,7 @@ MainMenu::MainMenu()
 
 MainMenu::MainMenu(std::shared_ptr<sf::RenderWindow> Base_window):BaseWindow(std::move(Base_window))
 {
-    if (!bg_texture.loadFromFile(R"(C:\Users\ljw\Desktop\PlaneGame_cpp\Planegame_CPP\Picture\BG.png)")) {
+    if (!bg_texture.loadFromFile(R"(.\Picture\BG.png)")) {
         std::cout<<"Load BG failed"<<'\n';
     }
     back_ground.setTexture(bg_texture);

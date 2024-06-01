@@ -16,9 +16,8 @@ class UIBase;
 
 class Game
 {
-public:
-    explicit Game();
-    ~Game();
+
+    
 private:
     std::shared_ptr<UIBase> currentUI;
 
@@ -32,7 +31,10 @@ private:
     //Base Window
     std::shared_ptr<sf::RenderWindow> window_;
 
-
+private:
+    explicit Game();
+    Game(const Game&)=delete;
+    Game& operator=(const Game&)=delete;
     
 public:
     void GameStart();
@@ -40,4 +42,5 @@ public:
     void UpdateGameState();
     void GameRender();
     void HandleEvents();
+    static Game& getGameInstance();
 };

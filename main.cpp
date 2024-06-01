@@ -4,7 +4,6 @@
 
 int main()
 {
-    Game game=Game();
-    game.GameStart();
+    Game::getGameInstance().GameStart();
     return 0;
 }

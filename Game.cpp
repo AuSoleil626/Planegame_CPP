@@ -12,9 +12,7 @@ Game::Game():frameTime(1000/refreshRate),game_state_(GameState()),window_(std::m
     game_state_= gameBegin;
 }
 
-Game::~Game()
-{
-}
+
 
 void Game::GameStart()
 {
@@ -97,4 +95,10 @@ void Game::HandleEvents()
         }
 
     }
+}
+
+Game& Game::getGameInstance()
+{
+    static Game instance;
+    return instance;
 }
