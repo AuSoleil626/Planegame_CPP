@@ -7,7 +7,7 @@
 #include "MainMenu.h"
 #include "UIBase.h"
 
-Game::Game():frameTime(1000/refreshRate),game_state_(GameState()),window_(std::make_shared<sf::RenderWindow>(sf::VideoMode(800, 600), "SFML Window"))
+Game::Game():frameTime(1000/refreshRate),game_state_(GameState()),window_(std::make_shared<sf::RenderWindow>(sf::VideoMode(960, 478), "SFML Window"))
 {
     game_state_= gameBegin;
 }

@@ -1,16 +1,16 @@
 #include "MainMenu.h"
 
-MainMenu::MainMenu()
-{
-}
+#include <iostream>
 
-MainMenu::MainMenu(std::shared_ptr<sf::RenderWindow> Base_window):BaseWindow(std::move(Base_window)),circle(sf::CircleShape())
+MainMenu::MainMenu()
+= default;
+
+MainMenu::MainMenu(std::shared_ptr<sf::RenderWindow> Base_window):BaseWindow(std::move(Base_window))
 {
-    circle.setRadius(50); 
-    circle.setPosition(400, 300);
-    circle.setFillColor(sf::Color::Red); 
-    circle.setOutlineColor(sf::Color::Black); 
-    circle.setOutlineThickness(2);
+    if (!bg_texture.loadFromFile(R"(C:\Users\ljw\Desktop\PlaneGame_cpp\Planegame_CPP\Picture\BG.png)")) {
+        std::cout<<"Load BG failed"<<'\n';
+    }
+    back_ground.setTexture(bg_texture);
 }
 
 
@@ -20,7 +20,7 @@ MainMenu::~MainMenu()
 
 void MainMenu::render()
 {
-    BaseWindow->draw(circle);
+    BaseWindow->draw(back_ground);
 }
 
 void MainMenu::update()

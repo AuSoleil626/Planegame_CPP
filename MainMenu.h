@@ -5,7 +5,8 @@ class MainMenu : public UIBase
 {
 private:
     std::shared_ptr<sf::RenderWindow> BaseWindow;
-    sf::CircleShape circle;
+    sf::Sprite back_ground;
+    sf::Texture bg_texture;
 public:
     MainMenu();
     MainMenu(std::shared_ptr<sf::RenderWindow> Base_window);
