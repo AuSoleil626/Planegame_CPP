@@ -150,11 +150,13 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainLogic.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="UIBase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
+    <ClInclude Include="MainLogic.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="UIBase.h" />
   </ItemGroup>

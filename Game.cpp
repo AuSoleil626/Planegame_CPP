@@ -3,11 +3,13 @@
 #include <memory>
 #include <set>
 #include <SFML/Window/Event.hpp>
-
+#include "MainLogic.h"
 #include "MainMenu.h"
 #include "UIBase.h"
 
-Game::Game():frameTime(1000/refreshRate),game_state_(GameState()),window_(std::make_shared<sf::RenderWindow>(sf::VideoMode(960, 478), "SFML Window"))
+Game::Game():frameTime(1000/refreshRate),game_state_(GameState()),window_(std::make_shared<sf::RenderWindow>(sf::VideoMode(960, 478), "SFML Window")),
+            planegame_(std::dynamic_pointer_cast<MainLogic_Base>(std::make_shared<MainLogic_NULL>()))
+            
 {
     game_state_= gameBegin;
 }
@@ -27,6 +29,7 @@ void Game::GameStart()
         //std::cout<<"render thread work"<<'\n';
         GameRender();
 
+        planegame_->handleLogic();
         
         HandleEvents();
         //logic thread
@@ -61,16 +64,29 @@ void Game::UpdateGameState()
     {
     case gameBegin:
         {
+            planegame_=std::dynamic_pointer_cast<MainLogic_Base>(std::make_shared<MainLogic_NULL>());
             SetCurrentUI(std::dynamic_pointer_cast<UIBase>(std::make_shared<MainMenu>(window_)));
             break;            
         }
 
     case gameLoading:
-        break;
+        {
+            planegame_=std::dynamic_pointer_cast<MainLogic_Base>(std::make_shared<MainLogic_NULL>());
+            break;   
+        }
+
     case gameRunning:
-        break;
+        {
+            planegame_=std::dynamic_pointer_cast<MainLogic_Base>(std::make_shared<MainLogic>());
+            break;            
+        }
+
     case gameEnd:
-        break;
+        {
+            planegame_=std::dynamic_pointer_cast<MainLogic_Base>(std::make_shared<MainLogic_NULL>());
+            break;   
+        }
+
     default:
         break;
     }

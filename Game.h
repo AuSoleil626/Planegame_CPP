@@ -13,6 +13,7 @@ enum GameState
     gameEnd
 };
 class UIBase;
+class MainLogic_Base;
 
 class Game
 {
@@ -30,6 +31,8 @@ private:
 
     //Base Window
     std::shared_ptr<sf::RenderWindow> window_;
+
+    std::shared_ptr<MainLogic_Base> planegame_;
 
 private:
     explicit Game();
