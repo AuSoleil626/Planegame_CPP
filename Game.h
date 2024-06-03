@@ -2,9 +2,10 @@
 #include <memory>
 #include <iostream>
 #include <chrono>
+#include <functional>
 #include <thread>
 #include <SFML/Graphics/RenderWindow.hpp>
-
+//using UI_CallBack=std::function<void()>;
 enum GameState
 {
     gameBegin,
@@ -23,7 +24,7 @@ private:
     std::shared_ptr<UIBase> currentUI;
 
     //Frame rate
-    int refreshRate=60;
+    int refreshRate;
     std::chrono::milliseconds frameTime;
 
     //Gamestate
@@ -33,6 +34,7 @@ private:
     std::shared_ptr<sf::RenderWindow> window_;
 
     std::shared_ptr<MainLogic_Base> planegame_;
+
 
 private:
     explicit Game();
@@ -45,5 +47,6 @@ public:
     void UpdateGameState();
     void GameRender();
     void HandleEvents();
+    void ChangeGameState(GameState state);
     static Game& getGameInstance();
 };

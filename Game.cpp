@@ -7,7 +7,8 @@
 #include "MainMenu.h"
 #include "UIBase.h"
 
-Game::Game():frameTime(1000/refreshRate),game_state_(GameState()),window_(std::make_shared<sf::RenderWindow>(sf::VideoMode(960, 478), "SFML Window")),
+Game::Game():refreshRate(60),frameTime(1000/refreshRate),
+            game_state_(GameState()),window_(std::make_shared<sf::RenderWindow>(sf::VideoMode(960, 478), "SFML Window")),
             planegame_(std::dynamic_pointer_cast<MainLogic_Base>(std::make_shared<MainLogic_NULL>()))
             
 {
@@ -19,7 +20,7 @@ Game::Game():frameTime(1000/refreshRate),game_state_(GameState()),window_(std::m
 void Game::GameStart()
 {
     UpdateGameState();
-    while (game_state_!=gameEnd)
+    while (window_->isOpen() && game_state_!=gameEnd)
     {
         auto startTime = std::chrono::steady_clock::now();
         GameState previous_state=game_state_;
@@ -27,9 +28,12 @@ void Game::GameStart()
         //render thread
         //std::thread renderThread(&Game::GameRender,this);
         //std::cout<<"render thread work"<<'\n';
-        GameRender();
+
+        currentUI->update();
 
         planegame_->handleLogic();
+
+        GameRender();
         
         HandleEvents();
         //logic thread
@@ -66,12 +70,15 @@ void Game::UpdateGameState()
         {
             planegame_=std::dynamic_pointer_cast<MainLogic_Base>(std::make_shared<MainLogic_NULL>());
             SetCurrentUI(std::dynamic_pointer_cast<UIBase>(std::make_shared<MainMenu>(window_)));
+            currentUI->setUI_Callback([this]{this->ChangeGameState(gameLoading);});
             break;            
         }
 
     case gameLoading:
         {
             planegame_=std::dynamic_pointer_cast<MainLogic_Base>(std::make_shared<MainLogic_NULL>());
+            SetCurrentUI(std::dynamic_pointer_cast<UIBase>(std::make_shared<UI_Empty>()));
+            std::cout<<"gameloading"<<"\n";
             break;   
         }
 
@@ -111,6 +118,11 @@ void Game::HandleEvents()
         }
 
     }
+}
+
+void Game::ChangeGameState(GameState state)
+{
+    game_state_=state;
 }
 
 Game& Game::getGameInstance()
