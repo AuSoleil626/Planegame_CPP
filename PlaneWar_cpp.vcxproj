@@ -149,6 +149,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="LoadMenu.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainLogic.cpp" />
     <ClCompile Include="MainMenu.cpp" />
@@ -156,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
+    <ClInclude Include="LoadMenu.h" />
     <ClInclude Include="MainLogic.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="UIBase.h" />

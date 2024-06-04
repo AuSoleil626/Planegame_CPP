@@ -7,20 +7,20 @@ MainMenu::MainMenu()
 MainMenu::MainMenu(std::shared_ptr<sf::RenderWindow> Base_window):BaseWindow(std::move(Base_window)),WindowSize(BaseWindow->getSize())
 {
     if (!bg_texture.loadFromFile(R"(.\Picture\BG.png)")) {
-        std::cout<<"Load BG failed"<<'\n';
+        std::cerr<<"Load BG failed"<<'\n';
     }
     back_ground.setTexture(bg_texture);
     
     
     if (!TX_Start.loadFromFile(R"(.\Picture\SG.png)")) {
-        std::cout<<"Load BG failed"<<'\n';
+        std::cerr<<"Load BG failed"<<'\n';
     }
     SP_Start.setTexture(TX_Start);
     setSpriteOrigin(SP_Start);
     SP_Start.setPosition(WindowSize.x/2,WindowSize.y/2-60);
     
     if (!TX_Exit.loadFromFile(R"(.\Picture\EG.png)")) {
-        std::cout<<"Load BG failed"<<'\n';
+        std::cerr<<"Load BG failed"<<'\n';
     }
     SP_Exit.setTexture(TX_Exit);
     setSpriteOrigin(SP_Exit);
@@ -47,7 +47,7 @@ void MainMenu::update()
 void MainMenu::eventHandle()
 {
     //check mouse collide
-    sf::Vector2i mousePosition = sf::Mouse::getPosition(*BaseWindow);
+    const sf::Vector2i mousePosition = sf::Mouse::getPosition(*BaseWindow);
     if (SP_Start.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePosition))) {
         SP_Start.setScale(1.1f, 1.1f);
     } else {

@@ -3,6 +3,8 @@
 #include <memory>
 #include <set>
 #include <SFML/Window/Event.hpp>
+
+#include "LoadMenu.h"
 #include "MainLogic.h"
 #include "MainMenu.h"
 #include "UIBase.h"
@@ -25,10 +27,6 @@ void Game::GameStart()
         auto startTime = std::chrono::steady_clock::now();
         GameState previous_state=game_state_;
 
-        //render thread
-        //std::thread renderThread(&Game::GameRender,this);
-        //std::cout<<"render thread work"<<'\n';
-
         currentUI->update();
 
         planegame_->handleLogic();
@@ -36,11 +34,6 @@ void Game::GameStart()
         GameRender();
         
         HandleEvents();
-        //logic thread
-
-
-        //renderThread.join();
-        //std::cout<<"render thread work end"<<'\n';
         
         if(game_state_ != previous_state && game_state_!=gameEnd) //means that there are some changes occured in thread
         {
@@ -76,15 +69,15 @@ void Game::UpdateGameState()
 
     case gameLoading:
         {
-            planegame_=std::dynamic_pointer_cast<MainLogic_Base>(std::make_shared<MainLogic_NULL>());
-            SetCurrentUI(std::dynamic_pointer_cast<UIBase>(std::make_shared<UI_Empty>()));
-            std::cout<<"gameloading"<<"\n";
+            planegame_=std::dynamic_pointer_cast<MainLogic_Base>(std::make_shared<MainLogic_gameRunning>());
+            SetCurrentUI(std::dynamic_pointer_cast<UIBase>(std::make_shared<LoadMenu>(window_)));
+            std::cout<<"Gameloading"<<"\n";
             break;   
         }
 
     case gameRunning:
         {
-            planegame_=std::dynamic_pointer_cast<MainLogic_Base>(std::make_shared<MainLogic>());
+            planegame_=std::dynamic_pointer_cast<MainLogic_Base>(std::make_shared<MainLogic_gameRunning>());
             break;            
         }
 
@@ -99,7 +92,7 @@ void Game::UpdateGameState()
     }
 }
 
-void Game::GameRender()
+void Game::GameRender() const
 {
     window_->clear();
     currentUI->render();
@@ -116,10 +109,8 @@ void Game::HandleEvents()
             game_state_=gameEnd;
             window_->close();            
         }
-
     }
 }
-
 void Game::ChangeGameState(GameState state)
 {
     game_state_=state;

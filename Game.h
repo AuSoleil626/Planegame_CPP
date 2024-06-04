@@ -45,7 +45,7 @@ public:
     void GameStart();
     void SetCurrentUI(std::shared_ptr<UIBase> ui);
     void UpdateGameState();
-    void GameRender();
+    void GameRender() const;
     void HandleEvents();
     void ChangeGameState(GameState state);
     static Game& getGameInstance();
