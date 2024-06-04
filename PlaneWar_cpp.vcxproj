@@ -153,6 +153,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainLogic.cpp" />
     <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="PauseUI.cpp" />
+    <ClCompile Include="RunningUI.cpp" />
     <ClCompile Include="UIBase.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +162,8 @@
     <ClInclude Include="LoadMenu.h" />
     <ClInclude Include="MainLogic.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="PauseUI.h" />
+    <ClInclude Include="RunningUI.h" />
     <ClInclude Include="UIBase.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

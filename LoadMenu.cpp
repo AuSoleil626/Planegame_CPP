@@ -32,12 +32,19 @@ void LoadMenu::render()
 
 void LoadMenu::update()
 {
-    
+    eventHandle();
 }
 
 void LoadMenu::eventHandle()
 {
-    
+    sf::Event event;
+    while (BaseWindow->pollEvent(event))
+    {
+        if (event.type == sf::Event::Closed)
+        {
+            BaseWindow->close();            
+        }
+    }
 }
 
 void LoadMenu::setUI_Callback(const UI_CallBack& callback)

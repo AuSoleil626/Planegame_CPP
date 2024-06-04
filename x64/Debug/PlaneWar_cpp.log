@@ -1,8 +1,30 @@
 ﻿  Game.cpp
+  LoadMenu.cpp
   main.cpp
+  MainLogic.cpp
   MainMenu.cpp
+C:\Users\ljw\Desktop\PlaneGame_cpp\Planegame_CPP\MainMenu.cpp(20,55): warning C4244: “参数”: 从“T”转换到“float”，可能丢失数据
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\ljw\Desktop\PlaneGame_cpp\Planegame_CPP\MainMenu.cpp(20,38): warning C4244: “参数”: 从“T”转换到“float”，可能丢失数据
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\ljw\Desktop\PlaneGame_cpp\Planegame_CPP\MainMenu.cpp(27,54): warning C4244: “参数”: 从“T”转换到“float”，可能丢失数据
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\ljw\Desktop\PlaneGame_cpp\Planegame_CPP\MainMenu.cpp(27,37): warning C4244: “参数”: 从“T”转换到“float”，可能丢失数据
+          with
+          [
+              T=unsigned int
+          ]
+  PauseUI.cpp
+  RunningUI.cpp
   UIBase.cpp
   正在生成代码...
-MainMenu.obj : error LNK2019: 无法解析的外部符号 "public: __cdecl UIBase::UIBase(void)" (??0UIBase@@QEAA@XZ)，函数 "public: __cdecl MainMenu::MainMenu(void)" (??0MainMenu@@QEAA@XZ) 中引用了该符号
-MainMenu.obj : error LNK2019: 无法解析的外部符号 "public: virtual __cdecl UIBase::~UIBase(void)" (??1UIBase@@UEAA@XZ)，函数 "public: virtual __cdecl MainMenu::~MainMenu(void)" (??1MainMenu@@UEAA@XZ) 中引用了该符号
-C:\Users\ljw\Desktop\PlaneGame_cpp\Planegame_CPP\x64\Debug\PlaneWar_cpp.exe : fatal error LNK1120: 2 个无法解析的外部命令
+  PlaneWar_cpp.vcxproj -> C:\Users\ljw\Desktop\PlaneGame_cpp\Planegame_CPP\x64\Debug\PlaneWar_cpp.exe

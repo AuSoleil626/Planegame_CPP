@@ -35,12 +35,10 @@ private:
 
     std::shared_ptr<MainLogic_Base> planegame_;
 
-
 private:
     explicit Game();
     Game(const Game&)=delete;
     Game& operator=(const Game&)=delete;
-    
 public:
     void GameStart();
     void SetCurrentUI(std::shared_ptr<UIBase> ui);

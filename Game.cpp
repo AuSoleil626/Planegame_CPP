@@ -7,12 +7,15 @@
 #include "LoadMenu.h"
 #include "MainLogic.h"
 #include "MainMenu.h"
+#include "PauseUI.h"
+#include "RunningUI.h"
 #include "UIBase.h"
 
-Game::Game():refreshRate(60),frameTime(1000/refreshRate),
-            game_state_(GameState()),window_(std::make_shared<sf::RenderWindow>(sf::VideoMode(960, 478), "SFML Window")),
-            planegame_(std::dynamic_pointer_cast<MainLogic_Base>(std::make_shared<MainLogic_NULL>()))
-            
+Game::Game(): refreshRate(60),
+              frameTime(1000 / refreshRate), game_state_(GameState()),
+              window_(std::make_shared<sf::RenderWindow>(sf::VideoMode(960, 478), "SFML Window")),
+              planegame_(std::dynamic_pointer_cast<MainLogic_Base>(std::make_shared<MainLogic_NULL>()))
+
 {
     game_state_= gameBegin;
 }
@@ -71,13 +74,16 @@ void Game::UpdateGameState()
         {
             planegame_=std::dynamic_pointer_cast<MainLogic_Base>(std::make_shared<MainLogic_gameRunning>());
             SetCurrentUI(std::dynamic_pointer_cast<UIBase>(std::make_shared<LoadMenu>(window_)));
+            planegame_->SetLoadCompleteCallback([this]{this->ChangeGameState(gameRunning);});
             std::cout<<"Gameloading"<<"\n";
             break;   
         }
 
     case gameRunning:
         {
-            planegame_=std::dynamic_pointer_cast<MainLogic_Base>(std::make_shared<MainLogic_gameRunning>());
+            //planegame_=std::dynamic_pointer_cast<MainLogic_Base>(std::make_shared<MainLogic_gameRunning>());
+            SetCurrentUI(std::dynamic_pointer_cast<UIBase>(std::make_shared<RunningUI>(window_)));
+            std::cout<<"Gamerunning"<<"\n";
             break;            
         }
 
@@ -95,21 +101,56 @@ void Game::UpdateGameState()
 void Game::GameRender() const
 {
     window_->clear();
+    planegame_->render();
     currentUI->render();
     window_->display();
+    std::cout<<window_.use_count()<<"\n";
 }
 
 void Game::HandleEvents()
 {
-    sf::Event event;
-    while (window_->pollEvent(event))
-    {
-        if (event.type == sf::Event::Closed)
-        {
-            game_state_=gameEnd;
-            window_->close();            
-        }
-    }
+    currentUI->update();
+    // sf::Event event;
+    // while (window_->pollEvent(event))
+    // {
+    //     if (event.type == sf::Event::Closed)
+    //     {
+    //         game_state_=gameEnd;
+    //         window_->close();            
+    //     }
+    //     if(event.type==sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+    //     {
+    //         switch(game_state_)
+    //         {
+    //         case gameBegin:
+    //             {
+    //                 // game_state_=gameEnd;
+    //                 // window_->close();
+    //                 // std::cout<<"Game End by ESC"<<"\n";
+    //                 break;
+    //             }
+    //         case gameLoading:
+    //             break;
+    //         case gameRunning:
+    //             {
+    //                 if(!isGamePause)
+    //                 {
+    //                     extraUI=std::dynamic_pointer_cast<UIBase>(std::make_shared<PauseUI>(window_));
+    //                     isGamePause=true;
+    //                     std::cout<<"Game Pause"<<"\n";                        
+    //                 }else
+    //                 {
+    //                     extraUI=std::dynamic_pointer_cast<UIBase>(std::make_shared<UI_Empty>());
+    //                     isGamePause=false;
+    //                     std::cout<<"Game Continue"<<"\n";
+    //                 }
+    //                 break;
+    //             }
+    //         case gameEnd:
+    //             break;
+    //         }
+    //     }
+    // }
 }
 void Game::ChangeGameState(GameState state)
 {

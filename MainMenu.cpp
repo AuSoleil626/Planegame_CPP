@@ -62,6 +62,10 @@ void MainMenu::eventHandle()
     sf::Event event;
     while (BaseWindow->pollEvent(event))
     {
+        if (event.type == sf::Event::Closed)
+        {
+            BaseWindow->close();            
+        }
         if(event.type == sf::Event::MouseButtonPressed)
         {
             if(event.mouseButton.button==sf::Mouse::Left)
@@ -78,6 +82,10 @@ void MainMenu::eventHandle()
                     BaseWindow->close();
                 }
             }
+        }
+        if(event.type==sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+        {
+            BaseWindow->close();
         }
     }
 }
