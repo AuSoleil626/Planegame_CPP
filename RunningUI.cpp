@@ -10,6 +10,7 @@ RunningUI::RunningUI(std::shared_ptr<sf::RenderWindow> Base_window):BaseWindow(s
                                                                         std::make_shared<UI_Empty>())),
                                                                     WindowSize(BaseWindow->getSize()),isPause(false)
 {
+    std::cout<<BaseWindow.use_count()<<"\n";
     if (!bg_texture.loadFromFile(R"(.\Picture\BG.png)")) {
         std::cerr<<"Load BG failed"<<'\n';
     }

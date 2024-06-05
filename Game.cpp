@@ -55,7 +55,8 @@ void Game::GameStart()
 
 void Game::SetCurrentUI(std::shared_ptr<UIBase> ui)
 {
-    currentUI=ui;
+    currentUI=std::move(ui);
+    std::cout<<currentUI.use_count()<<"current UI"<<"\n";
 }
 
 void Game::UpdateGameState()
@@ -104,7 +105,7 @@ void Game::GameRender() const
     planegame_->render();
     currentUI->render();
     window_->display();
-    std::cout<<window_.use_count()<<"\n";
+    //std::cout<<window_.use_count()<<" PlaneWindow"<<"\n";
 }
 
 void Game::HandleEvents()

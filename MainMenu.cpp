@@ -6,6 +6,7 @@ MainMenu::MainMenu()
 
 MainMenu::MainMenu(std::shared_ptr<sf::RenderWindow> Base_window):BaseWindow(std::move(Base_window)),WindowSize(BaseWindow->getSize())
 {
+    std::cout<<BaseWindow.use_count()<<"\n";
     if (!bg_texture.loadFromFile(R"(.\Picture\BG.png)")) {
         std::cerr<<"Load BG failed"<<'\n';
     }
