@@ -5,27 +5,24 @@
 MainLogic_Base::~MainLogic_Base()
 = default;
 
-MainLogic_gameRunning::MainLogic_gameRunning():isLoadComplete(false)
+MainLogic_gameRunning::MainLogic_gameRunning(): bullet_factory_player_(nullptr), isLoadComplete(false)
 {
-    textureFuture=std::async(std::launch::async,[]()
+    load_bullet_factory_player_=std::async(std::launch::async,[]()
     {
         std::this_thread::sleep_for(std::chrono::seconds(2));
-        sf::Texture texture;
-        if (!texture.loadFromFile("image.png")) {
-            //failed to load file
-            std::cerr<<"load file error"<<"\n";
-        }
-        return texture;
+        std::shared_ptr<BulletFactory_Player> bullet_factory_player=std::make_shared<BulletFactory_Player>();
+        return bullet_factory_player;
     });
 }
 
 void MainLogic_gameRunning::handleLogic()
 {
     //PlaneGame Logic
-    if(!isLoadComplete  && textureFuture.wait_for(std::chrono::seconds(0)) == std::future_status::ready)
+    if(!isLoadComplete  && load_bullet_factory_player_.wait_for(std::chrono::seconds(0)) == std::future_status::ready)
     {
-        std::cout<<"texture load successfully"<<"\n";
         isLoadComplete=true;
+        bullet_factory_player_=load_bullet_factory_player_.get();
+        std::cout<<"bullet_factory_player_ load successfully "<<bullet_factory_player_.use_count()<<"\n";
         if(load_complete_callback_)
         {
             load_complete_callback_();

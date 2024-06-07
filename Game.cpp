@@ -4,12 +4,12 @@
 #include <set>
 #include <SFML/Window/Event.hpp>
 
-#include "LoadMenu.h"
+#include "./UI/LoadMenu.h"
 #include "MainLogic.h"
-#include "MainMenu.h"
-#include "PauseUI.h"
-#include "RunningUI.h"
-#include "UIBase.h"
+#include "./UI/MainMenu.h"
+#include "./UI/PauseUI.h"
+#include "./UI/RunningUI.h"
+#include "./UI/UIBase.h"
 
 Game::Game(): refreshRate(60),
               frameTime(1000 / refreshRate), game_state_(GameState()),
@@ -111,47 +111,6 @@ void Game::GameRender() const
 void Game::HandleEvents()
 {
     currentUI->update();
-    // sf::Event event;
-    // while (window_->pollEvent(event))
-    // {
-    //     if (event.type == sf::Event::Closed)
-    //     {
-    //         game_state_=gameEnd;
-    //         window_->close();            
-    //     }
-    //     if(event.type==sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-    //     {
-    //         switch(game_state_)
-    //         {
-    //         case gameBegin:
-    //             {
-    //                 // game_state_=gameEnd;
-    //                 // window_->close();
-    //                 // std::cout<<"Game End by ESC"<<"\n";
-    //                 break;
-    //             }
-    //         case gameLoading:
-    //             break;
-    //         case gameRunning:
-    //             {
-    //                 if(!isGamePause)
-    //                 {
-    //                     extraUI=std::dynamic_pointer_cast<UIBase>(std::make_shared<PauseUI>(window_));
-    //                     isGamePause=true;
-    //                     std::cout<<"Game Pause"<<"\n";                        
-    //                 }else
-    //                 {
-    //                     extraUI=std::dynamic_pointer_cast<UIBase>(std::make_shared<UI_Empty>());
-    //                     isGamePause=false;
-    //                     std::cout<<"Game Continue"<<"\n";
-    //                 }
-    //                 break;
-    //             }
-    //         case gameEnd:
-    //             break;
-    //         }
-    //     }
-    // }
 }
 void Game::ChangeGameState(GameState state)
 {
