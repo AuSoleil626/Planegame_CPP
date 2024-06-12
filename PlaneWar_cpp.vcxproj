@@ -152,6 +152,7 @@
     <ClCompile Include="BulletFactory.cpp" />
     <ClCompile Include="EnemyFactory.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="HeroFactory.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainLogic.cpp" />
     <ClCompile Include="UI\LoadMenu.cpp">
@@ -525,6 +526,7 @@
     <ClInclude Include="BulletFactory.h" />
     <ClInclude Include="EnemyFactory.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="HeroFactory.h" />
     <ClInclude Include="MainLogic.h" />
     <ClInclude Include="UI\LoadMenu.h" />
     <ClInclude Include="UI\MainMenu.h" />
